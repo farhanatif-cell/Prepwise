@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>PrepWise - Interview Prep</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>PrepWise</h1>
+  <nav>
+    <button class="nav-btn active" data-page="home">Home</button>
+    <button class="nav-btn" data-page="bank">Question Bank</button>
+    <button class="nav-btn" data-page="interview">Mock Interview</button>
+    <button class="nav-btn" data-page="dashboard">Dashboard</button>
+  </nav>
+</header>
+
+<main>
+
+  <section id="home" class="page active">
+    <div class="card">
+      <h2>Welcome to PrepWise</h2>
+      <p>Practice interview questions, take timed mock sessions, and track your progress.</p>
+      <button class="primary" onclick="goToPage('interview')">Start a mock interview</button>
+    </div>
+    <div class="card">
+      <h3>Your stats</h3>
+      <p>Sessions completed: <span id="stat-sessions">0</span></p>
+      <p>Questions answered: <span id="stat-questions">0</span></p>
+    </div>
+  </section>
+
+  <section id="bank" class="page">
+    <h2>Question Bank</h2>
+    <div id="question-list"></div>
+  </section>
+
+  <section id="interview" class="page">
+    <h2>Mock Interview</h2>
+
+    <!-- Setup screen -->
+    <div id="interview-setup" class="card">
+      <p>Click below to start a short 3-question timed practice round.</p>
+      <button class="primary" onclick="startInterview()">Begin</button>
+    </div>
+
+    <div id="interview-question" class="card" style="display:none;">
+      <p>Question <span id="q-number">1</span> of <span id="q-total">3</span></p>
+      <div class="timer" id="timer-display">60</div>
+      <p id="q-text" style="margin-top:10px; font-weight:bold;"></p>
+      <textarea id="answer-box" placeholder="Type your answer here..."></textarea>
+      <br /><br />
+      <button class="primary" onclick="submitAnswer()">Submit Answer</button>
+    </div>
+
+    <div id="interview-summary" class="card" style="display:none;">
+      <h3>Session Complete</h3>
+      <p>Your average score: <span id="summary-score">0</span>%</p>
+      <div id="summary-details"></div>
+      <button class="primary" onclick="resetInterview()">Run Another Session</button>
+    </div>
+  </section>
+
+  <section id="dashboard" class="page">
+    <h2>Dashboard</h2>
+    <div class="card">
+      <h3>Topic-wise Accuracy</h3>
+      <div id="chart"></div>
+      <p id="no-data-msg" style="color:#888; font-style:italic;">Complete a mock interview to see your results here.</p>
+    </div>
+  </section>
+
+</main>
+
+<script src="script.js" defer></script>
+
+</body>
+</html>
