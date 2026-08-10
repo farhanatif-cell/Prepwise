@@ -1,41 +1,68 @@
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 import "./App.css";
 
 function App() {
   return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/questions" element={<QuestionBank />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+function Home() {
+  return (
     <div className="app">
-      {/* Navbar */}
+
+      {/* NAVBAR */}
       <nav className="navbar">
+
         <div className="logo">
-          <div className="logo-icon">
-            <span>•••</span>
-          </div>
+          <div className="logo-icon">•••</div>
+
           <span>
-            <strong>Prep</strong>Wise
+            <b>Prep</b>Wise
           </span>
         </div>
 
         <div className="nav-links">
-          <a className="active" href="#">Home</a>
-          <a href="#">Features</a>
-          <a href="#">Practice</a>
-          <a href="#">Company Packs</a>
-          <a href="#">Pricing</a>
-          <a href="#">About Us</a>
+          <Link className="active" to="/">Home</Link>
+          <a href="#features">Features</a>
+          <a href="#practice">Practice</a>
+          <a href="#companies">Company Packs</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#about">About Us</a>
         </div>
 
         <div className="nav-buttons">
-          <button className="login-btn">Log In</button>
-          <button className="signup-btn">Sign Up</button>
+          <Link to="/login">
+            <button className="login">Log In</button>
+          </Link>
+
+          <Link to="/signup">
+            <button className="signup">Sign Up</button>
+          </Link>
         </div>
+
       </nav>
 
-      {/* Hero Section */}
-      <main className="hero">
-        <div className="hero-left">
+
+      {/* HERO */}
+      <section className="hero">
+
+        <div className="hero-content">
 
           <div className="badge">
-            <span>✦</span>
-            Get Interview Ready. Get Hired.
+            ✦ &nbsp; Get Interview Ready. Get Hired.
           </div>
 
           <h1>
@@ -44,184 +71,183 @@ function App() {
             Crack <span>Interviews.</span>
           </h1>
 
-          <p className="hero-text">
+          <p>
             PrepWise helps you prepare with AI-powered mock interviews,
             curated questions, and instant feedback to boost your confidence
             and performance.
           </p>
 
           <div className="hero-buttons">
-            <button className="primary-btn">
-              Start Practicing Free
-              <span>→</span>
-            </button>
 
-            <button className="secondary-btn">
-              Explore Features
-            </button>
+            <Link to="/signup">
+              <button className="primary">
+                Start Practicing Free <span>→</span>
+              </button>
+            </Link>
+
+            <a href="#features">
+              <button className="secondary">
+                Explore Features
+              </button>
+            </a>
+
           </div>
 
-          {/* Trust */}
           <div className="trust">
+
             <div className="avatars">
-              <div className="avatar">👨🏻</div>
-              <div className="avatar">👨🏽</div>
-              <div className="avatar">👨🏼</div>
-              <div className="avatar">👩🏻</div>
-              <div className="avatar">👩🏼</div>
+              <div>👨🏻</div>
+              <div>👨🏽</div>
+              <div>👨🏼</div>
+              <div>👩🏻</div>
+              <div>👩🏼</div>
             </div>
 
-            <div className="rating">
+            <div>
               <div className="stars">★★★★★</div>
-              <p>Trusted by 10,000+ students</p>
+              <small>Trusted by 10,000+ students</small>
             </div>
+
           </div>
+
         </div>
 
-        {/* Hero Right */}
-        <div className="hero-right">
 
-          <div className="dashboard-bg"></div>
+        {/* HERO VISUAL */}
+        <div className="hero-visual">
 
-          {/* Dashboard */}
+          <div className="visual-background"></div>
+
           <div className="dashboard">
 
-            <div className="dashboard-header">
-              <h3>AI Mock Interview</h3>
-              <span className="progress-status">
-                In Progress
-              </span>
+            <div className="dashboard-top">
+              <b>AI Mock Interview</b>
+              <span>In Progress</span>
             </div>
 
-            <div className="dashboard-content">
+            <div className="dashboard-middle">
 
-              <div className="circle-container">
-                <div className="circle">
-                  <strong>75%</strong>
-                  <small>Performance</small>
-                </div>
+              <div className="progress-circle">
+                <strong>75%</strong>
+                <small>Performance</small>
               </div>
 
               <div className="stats">
+
                 <div>
                   <span>Answers</span>
-                  <strong>15 / 20</strong>
+                  <b>15 / 20</b>
                 </div>
 
                 <div>
                   <span>Confidence</span>
-                  <strong>High</strong>
+                  <b>High</b>
                 </div>
 
                 <div>
                   <span>Feedback</span>
-                  <strong>Good</strong>
+                  <b>Good</b>
                 </div>
-              </div>
-            </div>
 
-            <div className="recent-title">
-              Recent Mock Interview
-            </div>
-
-            <div className="recent-card">
-              <div className="recent-icon">👤</div>
-
-              <div className="recent-info">
-                <strong>Frontend Developer</strong>
-                <span>Today · 30 min</span>
               </div>
 
-              <div className="score">85%</div>
             </div>
+
+            <h4>Recent Mock Interview</h4>
+
+            <div className="recent">
+
+              <div className="profile">👤</div>
+
+              <div>
+                <b>Frontend Developer</b>
+                <small>Today · 30 min</small>
+              </div>
+
+              <strong>85%</strong>
+
+            </div>
+
           </div>
 
-          {/* Person */}
           <div className="person">
-            <div className="head">
-              <div className="hair"></div>
-              <div className="face">
-                <span className="eye left"></span>
-                <span className="eye right"></span>
-                <span className="nose"></span>
-                <span className="mouth"></span>
-              </div>
-            </div>
 
-            <div className="body">
-              <div className="shirt"></div>
-              <div className="arm left-arm"></div>
-              <div className="arm right-arm"></div>
-            </div>
+            <div className="head"></div>
+            <div className="body"></div>
+            <div className="arm"></div>
 
             <div className="laptop">
-              <div className="laptop-screen">
-                <div className="apple-dot"></div>
+              <div className="screen">
+                <div></div>
               </div>
+
               <div className="keyboard"></div>
             </div>
+
           </div>
 
-          {/* Plant */}
           <div className="plant">
-            <div className="leaf leaf1"></div>
-            <div className="leaf leaf2"></div>
-            <div className="leaf leaf3"></div>
+            <div className="leaf one"></div>
+            <div className="leaf two"></div>
+            <div className="leaf three"></div>
             <div className="stem"></div>
             <div className="pot"></div>
           </div>
 
-          <div className="cup"></div>
         </div>
-      </main>
 
-      {/* Features */}
-      <section className="features">
+      </section>
+
+
+      {/* FEATURES */}
+      <section className="features" id="features">
 
         <Feature
           icon="💬"
           title="AI Mock Interviews"
           text="Real-time AI interviews with smart feedback."
-          type="blue"
         />
 
         <Feature
           icon="📄"
           title="Curated Questions"
           text="Topic-wise questions from top companies."
-          type="purple"
         />
 
         <Feature
           icon="↗"
           title="Performance Analytics"
           text="Track your progress and improve every day."
-          type="green"
         />
 
         <Feature
           icon="💼"
           title="Company Packs"
           text="Prepare for your dream companies."
-          type="orange"
         />
 
       </section>
+
     </div>
   );
 }
 
-function Feature({ icon, title, text, type }) {
+
+function Feature({ icon, title, text }) {
   return (
     <div className="feature">
-      <div className={`feature-icon ${type}`}>
+
+      <div className="feature-icon">
         {icon}
       </div>
 
       <h3>{title}</h3>
+
       <p>{text}</p>
+
     </div>
   );
 }
+
 
 export default App;

@@ -1,0 +1,134 @@
+.auth-page {
+  min-height: 100vh;
+  background: #f6f9ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.auth-card {
+  width: 420px;
+  background: white;
+  padding: 42px;
+  border-radius: 18px;
+  box-shadow: 0 15px 45px rgba(30, 70, 130, 0.12);
+}
+
+.auth-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-size: 27px;
+  color: #172033;
+  margin-bottom: 35px;
+}
+
+.auth-logo b {
+  color: #1764df;
+}
+
+.auth-logo-icon {
+  width: 36px;
+  height: 32px;
+  border-radius: 8px;
+  background: #1764df;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.auth-card h1 {
+  font-size: 28px;
+  color: #172033;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: #718096;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  color: #263349;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #dce3ee;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+  color: #172033;
+  transition: 0.2s;
+}
+
+.form-group input:focus {
+  border-color: #1764df;
+  box-shadow: 0 0 0 3px rgba(23, 100, 223, 0.08);
+}
+
+.auth-button {
+  width: 100%;
+  height: 50px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 8px;
+  background: #1764df;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-button:hover {
+  background: #1256c4;
+}
+
+.auth-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.auth-message {
+  margin-top: 18px;
+  padding: 12px;
+  background: #eef5ff;
+  color: #1764df;
+  border-radius: 7px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.auth-footer {
+  text-align: center;
+  color: #718096;
+  font-size: 14px;
+  margin-top: 25px;
+}
+
+.auth-footer button {
+  border: none;
+  background: none;
+  color: #1764df;
+  font-weight: 600;
+  margin-left: 5px;
+  cursor: pointer;
+}
