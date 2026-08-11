@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../services/api";
 import "./Auth.css";
 
 function Signup() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,15 +31,21 @@ function Signup() {
     try {
       const data = await registerUser(formData);
 
-      setMessage(data.message);
+      setMessage(data.message || "Account created successfully!");
 
       setFormData({
         name: "",
         email: "",
         password: "",
       });
+
+      // Go to login after successful signup
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
+
     } catch (error) {
-      setMessage(error.message);
+      setMessage(error.message || "Signup failed");
     } finally {
       setLoading(false);
     }
@@ -47,24 +56,38 @@ function Signup() {
 
       <div className="auth-card">
 
+        {/* LOGO */}
         <div className="auth-logo">
-          <div className="auth-logo-icon">•••</div>
+
+          <div className="auth-logo-icon">
+            •••
+          </div>
 
           <span>
             <b>Prep</b>Wise
           </span>
+
         </div>
 
-        <h1>Create your account</h1>
+
+        {/* TITLE */}
+        <h1>
+          Create your account
+        </h1>
 
         <p className="auth-subtitle">
           Start your interview preparation journey today.
         </p>
 
+
+        {/* SIGNUP FORM */}
         <form onSubmit={handleSubmit}>
 
           <div className="form-group">
-            <label>Full Name</label>
+
+            <label>
+              Full Name
+            </label>
 
             <input
               type="text"
@@ -74,10 +97,15 @@ function Signup() {
               onChange={handleChange}
               required
             />
+
           </div>
 
+
           <div className="form-group">
-            <label>Email</label>
+
+            <label>
+              Email
+            </label>
 
             <input
               type="email"
@@ -87,10 +115,15 @@ function Signup() {
               onChange={handleChange}
               required
             />
+
           </div>
 
+
           <div className="form-group">
-            <label>Password</label>
+
+            <label>
+              Password
+            </label>
 
             <input
               type="password"
@@ -98,32 +131,43 @@ function Signup() {
               placeholder="Create a password"
               value={formData.password}
               onChange={handleChange}
-              minLength="6"
+              minLength={6}
               required
             />
+
           </div>
+
 
           <button
             className="auth-button"
             type="submit"
             disabled={loading}
           >
-            {loading ? "Creating Account..." : "Create Account"}
+            {loading
+              ? "Creating Account..."
+              : "Create Account"}
           </button>
 
         </form>
 
+
+        {/* MESSAGE */}
         {message && (
           <div className="auth-message">
             {message}
           </div>
         )}
 
+
+        {/* LOGIN */}
         <p className="auth-footer">
-          Already have an account?
-          <button type="button">
+
+          Already have an account?{" "}
+
+          <Link to="/login">
             Log In
-          </button>
+          </Link>
+
         </p>
 
       </div>
