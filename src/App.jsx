@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import QuestionBank from "./pages/QuestionBank";
+
 import "./App.css";
 
 function App() {
@@ -35,7 +37,10 @@ function Home() {
         </div>
 
         <div className="nav-links">
-          <Link className="active" to="/">Home</Link>
+          <Link className="active" to="/">
+            Home
+          </Link>
+
           <a href="#features">Features</a>
           <a href="#practice">Practice</a>
           <a href="#companies">Company Packs</a>
@@ -44,13 +49,19 @@ function Home() {
         </div>
 
         <div className="nav-buttons">
+
           <Link to="/login">
-            <button className="login">Log In</button>
+            <button className="login">
+              Log In
+            </button>
           </Link>
 
           <Link to="/signup">
-            <button className="signup">Sign Up</button>
+            <button className="signup">
+              Sign Up
+            </button>
           </Link>
+
         </div>
 
       </nav>
@@ -72,9 +83,9 @@ function Home() {
           </h1>
 
           <p>
-            PrepWise helps you prepare with AI-powered mock interviews,
-            curated questions, and instant feedback to boost your confidence
-            and performance.
+            PrepWise helps you prepare with curated interview
+            questions, company-wise practice, mock interviews,
+            and performance tracking to boost your confidence.
           </p>
 
           <div className="hero-buttons">
@@ -104,8 +115,13 @@ function Home() {
             </div>
 
             <div>
-              <div className="stars">★★★★★</div>
-              <small>Trusted by 10,000+ students</small>
+              <div className="stars">
+                ★★★★★
+              </div>
+
+              <small>
+                Trusted by 10,000+ students
+              </small>
             </div>
 
           </div>
@@ -121,7 +137,7 @@ function Home() {
           <div className="dashboard">
 
             <div className="dashboard-top">
-              <b>AI Mock Interview</b>
+              <b>Mock Interview</b>
               <span>In Progress</span>
             </div>
 
@@ -135,7 +151,7 @@ function Home() {
               <div className="stats">
 
                 <div>
-                  <span>Answers</span>
+                  <span>Questions</span>
                   <b>15 / 20</b>
                 </div>
 
@@ -145,7 +161,7 @@ function Home() {
                 </div>
 
                 <div>
-                  <span>Feedback</span>
+                  <span>Score</span>
                   <b>Good</b>
                 </div>
 
@@ -153,23 +169,34 @@ function Home() {
 
             </div>
 
-            <h4>Recent Mock Interview</h4>
+            <h4>
+              Recent Mock Interview
+            </h4>
 
             <div className="recent">
 
-              <div className="profile">👤</div>
+              <div className="profile">
+                👤
+              </div>
 
               <div>
                 <b>Frontend Developer</b>
-                <small>Today · 30 min</small>
+
+                <small>
+                  Today · 30 min
+                </small>
               </div>
 
-              <strong>85%</strong>
+              <strong>
+                85%
+              </strong>
 
             </div>
 
           </div>
 
+
+          {/* PERSON */}
           <div className="person">
 
             <div className="head"></div>
@@ -177,21 +204,29 @@ function Home() {
             <div className="arm"></div>
 
             <div className="laptop">
+
               <div className="screen">
                 <div></div>
               </div>
 
               <div className="keyboard"></div>
+
             </div>
 
           </div>
 
+
+          {/* PLANT */}
           <div className="plant">
+
             <div className="leaf one"></div>
             <div className="leaf two"></div>
             <div className="leaf three"></div>
+
             <div className="stem"></div>
+
             <div className="pot"></div>
+
           </div>
 
         </div>
@@ -200,30 +235,33 @@ function Home() {
 
 
       {/* FEATURES */}
-      <section className="features" id="features">
+      <section
+        className="features"
+        id="features"
+      >
 
         <Feature
           icon="💬"
-          title="AI Mock Interviews"
-          text="Real-time AI interviews with smart feedback."
+          title="Mock Interviews"
+          text="Practice realistic interview questions and improve your answers."
         />
 
         <Feature
           icon="📄"
           title="Curated Questions"
-          text="Topic-wise questions from top companies."
+          text="Practice topic-wise questions commonly asked in interviews."
         />
 
         <Feature
           icon="↗"
           title="Performance Analytics"
-          text="Track your progress and improve every day."
+          text="Track your scores and identify areas where you need improvement."
         />
 
         <Feature
           icon="💼"
           title="Company Packs"
-          text="Prepare for your dream companies."
+          text="Prepare specifically for interviews at your target companies."
         />
 
       </section>
@@ -241,9 +279,13 @@ function Feature({ icon, title, text }) {
         {icon}
       </div>
 
-      <h3>{title}</h3>
+      <h3>
+        {title}
+      </h3>
 
-      <p>{text}</p>
+      <p>
+        {text}
+      </p>
 
     </div>
   );

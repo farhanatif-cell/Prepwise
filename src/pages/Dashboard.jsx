@@ -1,13 +1,16 @@
+import { Link, useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 
 function Dashboard() {
+  const navigate = useNavigate();
+
   const user = JSON.parse(localStorage.getItem("user"));
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
 
-    window.location.reload();
+    navigate("/login");
   };
 
   return (
@@ -17,52 +20,39 @@ function Dashboard() {
       <aside className="sidebar">
 
         <div className="dashboard-logo">
-          <div className="dashboard-logo-icon">•••</div>
+          <div className="dashboard-logo-icon">
+            •••
+          </div>
+
           <span>
             <b>Prep</b>Wise
           </span>
         </div>
 
+
         <div className="sidebar-menu">
 
-          <button className="menu-item active">
+          <Link
+            to="/dashboard"
+            className="menu-item active"
+          >
             <span>⌂</span>
             Dashboard
-          </button>
+          </Link>
 
-          <button className="menu-item">
-            <span>◈</span>
-            Mock Interviews
-          </button>
 
-          <button className="menu-item">
+          <Link
+            to="/questions"
+            className="menu-item"
+          >
             <span>▤</span>
             Question Bank
-          </button>
-
-          <button className="menu-item">
-            <span>◷</span>
-            Practice
-          </button>
-
-          <button className="menu-item">
-            <span>▣</span>
-            Company Packs
-          </button>
-
-          <button className="menu-item">
-            <span>↗</span>
-            Analytics
-          </button>
+          </Link>
 
         </div>
 
-        <div className="sidebar-bottom">
 
-          <button className="menu-item">
-            <span>⚙</span>
-            Settings
-          </button>
+        <div className="sidebar-bottom">
 
           <button
             className="menu-item logout"
@@ -80,21 +70,23 @@ function Dashboard() {
       {/* MAIN CONTENT */}
       <main className="dashboard-main">
 
+        {/* HEADER */}
         <header className="dashboard-header">
 
           <div>
-            <p className="welcome-small">Welcome back,</p>
+
+            <p className="welcome-small">
+              Welcome back,
+            </p>
 
             <h1>
               {user?.name || "Student"}!
             </h1>
+
           </div>
 
-          <div className="profile">
 
-            <div className="notification">
-              ♢
-            </div>
+          <div className="profile">
 
             <div className="avatar">
               {user?.name?.charAt(0).toUpperCase() || "U"}
@@ -109,23 +101,28 @@ function Dashboard() {
         <section className="quick-start">
 
           <div>
+
             <span className="dashboard-badge">
-              AI POWERED
+              PREPWISE
             </span>
 
             <h2>
-              Ready for your next interview?
+              Ready to practice?
             </h2>
 
             <p>
-              Practice with an AI-powered mock interview
-              and get instant feedback on your performance.
+              Improve your interview skills by practicing
+              questions from our interview question bank.
             </p>
 
-            <button className="start-button">
-              Start Mock Interview →
-            </button>
+            <Link to="/questions">
+              <button className="start-button">
+                Start Practicing →
+              </button>
+            </Link>
+
           </div>
+
 
           <div className="quick-icon">
             ✦
@@ -134,35 +131,90 @@ function Dashboard() {
         </section>
 
 
-        {/* STATS */}
+        {/* SIMPLE STATS */}
         <section className="stats-grid">
 
           <div className="stat-card">
-            <div className="stat-icon">◈</div>
-            <span>Mock Interviews</span>
-            <strong>12</strong>
-            <small>+3 this week</small>
+
+            <div className="stat-icon">
+              ▤
+            </div>
+
+            <span>
+              Question Bank
+            </span>
+
+            <strong>
+              Practice
+            </strong>
+
+            <small>
+              Interview questions
+            </small>
+
           </div>
 
-          <div className="stat-card">
-            <div className="stat-icon">✓</div>
-            <span>Questions Practiced</span>
-            <strong>148</strong>
-            <small>+24 this week</small>
-          </div>
 
           <div className="stat-card">
-            <div className="stat-icon">↗</div>
-            <span>Average Score</span>
-            <strong>82%</strong>
-            <small>+8% improvement</small>
+
+            <div className="stat-icon">
+              ✓
+            </div>
+
+            <span>
+              Topics
+            </span>
+
+            <strong>
+              Multiple
+            </strong>
+
+            <small>
+              Different subjects
+            </small>
+
           </div>
 
+
           <div className="stat-card">
-            <div className="stat-icon">◷</div>
-            <span>Practice Time</span>
-            <strong>6.5h</strong>
-            <small>This month</small>
+
+            <div className="stat-icon">
+              ★
+            </div>
+
+            <span>
+              Difficulty
+            </span>
+
+            <strong>
+              Easy → Hard
+            </strong>
+
+            <small>
+              Learn progressively
+            </small>
+
+          </div>
+
+
+          <div className="stat-card">
+
+            <div className="stat-icon">
+              ↗
+            </div>
+
+            <span>
+              Goal
+            </span>
+
+            <strong>
+              Get Ready
+            </strong>
+
+            <small>
+              For your interview
+            </small>
+
           </div>
 
         </section>
@@ -171,34 +223,30 @@ function Dashboard() {
         {/* LOWER CONTENT */}
         <section className="dashboard-grid">
 
-          {/* RECENT INTERVIEWS */}
+
+          {/* QUESTION BANK CARD */}
           <div className="dashboard-card">
 
             <div className="card-heading">
+
               <div>
-                <h3>Recent Interviews</h3>
-                <p>Your latest mock interview results</p>
+
+                <h3>
+                  Question Bank
+                </h3>
+
+                <p>
+                  Practice commonly asked interview questions.
+                </p>
+
               </div>
 
-              <button>View All →</button>
+              <Link to="/questions">
+                View All →
+              </Link>
+
             </div>
 
-            <div className="interview-row">
-
-              <div className="interview-icon">
-                FE
-              </div>
-
-              <div className="interview-info">
-                <strong>Frontend Developer</strong>
-                <span>Today · 30 minutes</span>
-              </div>
-
-              <div className="score">
-                85%
-              </div>
-
-            </div>
 
             <div className="interview-row">
 
@@ -207,15 +255,54 @@ function Dashboard() {
               </div>
 
               <div className="interview-info">
-                <strong>JavaScript Interview</strong>
-                <span>Yesterday · 25 minutes</span>
+
+                <strong>
+                  JavaScript
+                </strong>
+
+                <span>
+                  Programming questions
+                </span>
+
               </div>
 
-              <div className="score">
-                78%
-              </div>
+              <Link
+                to="/questions"
+                className="score"
+              >
+                Practice
+              </Link>
 
             </div>
+
+
+            <div className="interview-row">
+
+              <div className="interview-icon">
+                RE
+              </div>
+
+              <div className="interview-info">
+
+                <strong>
+                  React
+                </strong>
+
+                <span>
+                  Frontend questions
+                </span>
+
+              </div>
+
+              <Link
+                to="/questions"
+                className="score"
+              >
+                Practice
+              </Link>
+
+            </div>
+
 
             <div className="interview-row">
 
@@ -224,72 +311,111 @@ function Dashboard() {
               </div>
 
               <div className="interview-info">
-                <strong>Data Structures</strong>
-                <span>Aug 8 · 40 minutes</span>
+
+                <strong>
+                  Data Structures
+                </strong>
+
+                <span>
+                  DSA interview questions
+                </span>
+
               </div>
 
-              <div className="score">
-                82%
-              </div>
+              <Link
+                to="/questions"
+                className="score"
+              >
+                Practice
+              </Link>
 
             </div>
 
           </div>
 
 
-          {/* PROGRESS */}
+          {/* PREPARATION CARD */}
           <div className="dashboard-card">
 
             <div className="card-heading">
+
               <div>
-                <h3>Preparation Progress</h3>
-                <p>Keep improving your skills</p>
+
+                <h3>
+                  Prepare for Interviews
+                </h3>
+
+                <p>
+                  Choose a topic and start learning.
+                </p>
+
               </div>
+
             </div>
 
+
             <div className="progress-item">
+
               <div>
-                <span>JavaScript</span>
-                <strong>82%</strong>
+                <span>
+                  JavaScript
+                </span>
+
+                <strong>
+                  Beginner
+                </strong>
               </div>
 
               <div className="progress-bar">
-                <div style={{ width: "82%" }}></div>
+                <div style={{ width: "70%" }}></div>
               </div>
+
             </div>
 
+
             <div className="progress-item">
+
               <div>
-                <span>React</span>
-                <strong>74%</strong>
+                <span>
+                  React
+                </span>
+
+                <strong>
+                  Beginner
+                </strong>
               </div>
 
               <div className="progress-bar">
-                <div style={{ width: "74%" }}></div>
+                <div style={{ width: "55%" }}></div>
               </div>
+
             </div>
 
+
             <div className="progress-item">
+
               <div>
-                <span>Data Structures</span>
-                <strong>65%</strong>
+                <span>
+                  Data Structures
+                </span>
+
+                <strong>
+                  Practice
+                </strong>
               </div>
 
               <div className="progress-bar">
-                <div style={{ width: "65%" }}></div>
-              </div>
-            </div>
-
-            <div className="progress-item">
-              <div>
-                <span>System Design</span>
-                <strong>48%</strong>
+                <div style={{ width: "45%" }}></div>
               </div>
 
-              <div className="progress-bar">
-                <div style={{ width: "48%" }}></div>
-              </div>
             </div>
+
+
+            <Link to="/questions">
+              <button className="start-button">
+                Open Question Bank
+              </button>
+            </Link>
 
           </div>
 

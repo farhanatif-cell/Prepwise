@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../services/api";
 import "./Auth.css";
 
 function Login() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -31,14 +34,12 @@ function Login() {
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
 
-      setMessage("Login successful!");
+      console.log("Logged in user:", data.user);
 
-     console.log("Logged in user:", data.user);
-
-window.location.href = "/dashboard";
-
+      // Go to dashboard
+      navigate("/dashboard");
     } catch (error) {
-      setMessage(error.message);
+      setMessage(error.message || "Login failed");
     } finally {
       setLoading(false);
     }
@@ -49,24 +50,38 @@ window.location.href = "/dashboard";
 
       <div className="auth-card">
 
+        {/* LOGO */}
         <div className="auth-logo">
-          <div className="auth-logo-icon">•••</div>
+
+          <div className="auth-logo-icon">
+            •••
+          </div>
 
           <span>
             <b>Prep</b>Wise
           </span>
+
         </div>
 
-        <h1>Welcome back</h1>
+
+        {/* TITLE */}
+        <h1>
+          Welcome back
+        </h1>
 
         <p className="auth-subtitle">
           Log in to continue your interview preparation.
         </p>
 
+
+        {/* LOGIN FORM */}
         <form onSubmit={handleSubmit}>
 
           <div className="form-group">
-            <label>Email</label>
+
+            <label>
+              Email
+            </label>
 
             <input
               type="email"
@@ -76,10 +91,15 @@ window.location.href = "/dashboard";
               onChange={handleChange}
               required
             />
+
           </div>
 
+
           <div className="form-group">
-            <label>Password</label>
+
+            <label>
+              Password
+            </label>
 
             <input
               type="password"
@@ -89,7 +109,9 @@ window.location.href = "/dashboard";
               onChange={handleChange}
               required
             />
+
           </div>
+
 
           <button
             className="auth-button"
@@ -101,17 +123,24 @@ window.location.href = "/dashboard";
 
         </form>
 
+
+        {/* MESSAGE */}
         {message && (
           <div className="auth-message">
             {message}
           </div>
         )}
 
+
+        {/* SIGN UP */}
         <p className="auth-footer">
-          Don't have an account?
-          <button type="button">
+
+          Don't have an account?{" "}
+
+          <Link to="/signup">
             Sign Up
-          </button>
+          </Link>
+
         </p>
 
       </div>
