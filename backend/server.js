@@ -1,6 +1,5 @@
 const dotenv = require("dotenv");
 
-// Load .env FIRST
 dotenv.config();
 
 const express = require("express");
@@ -10,15 +9,14 @@ const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const questionRoutes = require("./routes/questionRoutes");
 
-
 const app = express();
-
-// Connect MongoDB
-connectDB();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Connect MongoDB
+connectDB();
 
 // Test route
 app.get("/", (req, res) => {
@@ -31,9 +29,14 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/questions", questionRoutes);
 
-// Server
-const PORT = process.env.PORT || 5001;
+// Export app for Vercel
+module.exports = app;
 
-app.listen(PORT, () => {
-  console.log(`PrepWise backend running on port ${PORT}`);
-});
+// Run server locally
+if (require.main === module) {
+  const PORT = process.env.PORT || 5001;
+
+  app.listen(PORT, () => {
+    console.log(`PrepWise backend running on port ${PORT}`);
+  });
+}

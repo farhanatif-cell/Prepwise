@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5001/api";
+const API_URL = "/api";
 
 export const registerUser = async (userData) => {
   const response = await fetch(`${API_URL}/auth/register`, {
@@ -31,6 +31,18 @@ export const loginUser = async (userData) => {
 
   if (!response.ok) {
     throw new Error(data.message || "Login failed");
+  }
+
+  return data;
+};
+
+export const getQuestions = async () => {
+  const response = await fetch(`${API_URL}/questions`);
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Failed to load questions");
   }
 
   return data;
